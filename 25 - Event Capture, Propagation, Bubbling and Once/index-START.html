@@ -40,9 +40,26 @@
   }
 </style>
 
-<button></button>
+<button>Click it</button>
 <script>
+  const divs = document.querySelectorAll("div");
+  function logText(e) {
+    console.log(this.classList.value);
+    // e.stopPropagation();
+  }
 
+  divs.forEach(div => div.addEventListener("click", logText, {
+    capture: false,
+  }));
+  const body = document.querySelector("body");
+  const button = document.querySelector("button");
+
+  button.addEventListener("click", () => {
+    console.log("Clicked!");
+    body.removeChild(button);
+  }, {
+    once: true
+  });
 </script>
 </body>
 </html>
